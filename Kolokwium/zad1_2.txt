@@ -1,0 +1,1 @@
+git push służy do przekazywania zawartości repozytorium lokalnego do zdalnego repozytorium.
