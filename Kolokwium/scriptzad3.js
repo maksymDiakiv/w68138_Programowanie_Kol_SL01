@@ -1,5 +1,26 @@
 const form = document.querySelector('form');
 
+const birthDateField = document.querySelector("[name='birthDate']");
+birthDateField.addEventListener('input', () => {
+    requiredValidation(birthDateField);
+    validAge();
+});
+
+const phoneField = document.querySelector("[name='phone']");
+phoneField.addEventListener('input', () => {
+    requiredValidation(phoneField);
+    minLengthValidation(phoneField, 9);
+
+});
+
+phoneField.addEventListener('keypress', (event) => {
+    var charCode = (event.which) ? event.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        event.preventDefault();
+    }
+    return true;
+});
+
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (validForm()) {
@@ -108,10 +129,27 @@ function validConfirmPassword() {
     }
 }
 
+function validAge() {
+    const today = new Date();
+    const date = new Date(birthDateField.value);
+
+    var age = today.getFullYear() - date.getFullYear();
+    var m = today.getMonth() - date.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < date.getDate())) {
+        age--;
+    }
+
+    const errorField = document.querySelector('[name="birthDate"] + span.error');
+
+    errorField.innerHTML = age < 18 ? 'Musisz być pełnoletni' : '';
+
+    return age < 18;
+}
+
 function validForm() {
     if (requiredValidation(nameField) || requiredValidation(emailField)
         || requiredValidation(passwordField)  || minLengthValidation(nameField, 2) || minLengthValidation(emailField, 2)
-        || minLengthValidation(passwordField, 8) || minLengthValidation(nameField, 3) 
+        || minLengthValidation(passwordField, 8) || minLengthValidation(nameField, 3) || minLengthValidation(phoneField, 9) || validAge()
         || emailValidation(emailField) || passwordValidation(passwordField) || 
         validConfirmPassword() 
         ) {
@@ -120,3 +158,26 @@ function validForm() {
 
     return true;
 }
+
+function dodajDoTabeli() {
+    let imieInput = document.getElementById("name");
+    let emailInput = document.getElementById("email");
+
+    let imie = imieInput.value;
+    let email = emailInput.value;
+
+    if (imie !== "" && nazwisko !== "") {
+      let tabela = document.getElementById("tabela");
+
+      let nowyWiersz = tabela.insertRow();
+
+      let komorkaImie = nowyWiersz.insertCell();
+      komorkaImie.innerHTML = imie;
+
+      let komorkaEmail = nowyWiersz.insertCell();
+      komorkaEmail.innerHTML = email;
+
+      imieInput.value = "";
+      emailInput.value = "";
+    }
+  }

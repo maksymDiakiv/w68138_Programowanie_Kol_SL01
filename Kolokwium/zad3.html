@@ -5,20 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style></style>
+    <style>
+        table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+    }
+    </style>
     <script  type="text/javascript" defer src="scriptzad3.js"></script>
 </head>
 <body>
     <form class="form" name="form" method="post" novalidate>
         <div class="control">
             <label>Login</label>
-            <input type="text" name="name">
+            <input type="text" name="name" id="name">
             <span class="error"></span>
         </div>
         
         <div class="control">
             <label>Email: </label>
-            <input type="text" name="email">
+            <input type="text" name="email" id="email">
             <span class="error"></span>
         </div>
         <div class="control">
@@ -32,9 +40,28 @@
             <span class="error"></span>
         </div>
         
+        
+        <div class="control">
+            <label>Telefon: </label>
+            <input type="text" name="phone">
+            <span class="error"></span>
+        </div>
+        <div class="control">
+            <label>Data urodzenia: </label>
+            <input type="date" name="birthDate">
+            <span class="error"></span>
+        </div>
         <div class="control actions">
             <input type="submit" value="Zapisz">
         </div>
     </form>
+    
+    <table id="tabela">
+        <tr>
+          <th>Login</th>
+          <th>Email</th>
+        </tr>
+      </table>
+      <button onclick="dodajDoTabeli()">Dodaj do tabeli</button>
 </body>
 </html>
