@@ -1,2 +1,2 @@
 git status wyświetla stan katalogu roboczego i przechowalni. Pozwala zobaczyć, które zmiany zostały zapisane w przechowalni, 
-a które nie, a także które pliki nie są śledzone przez system Git.
+a które nie, a także które pliki nie są śledzone przez system Git.   
